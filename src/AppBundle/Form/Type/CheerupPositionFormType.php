@@ -7,25 +7,30 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserValidationFormType extends AbstractType
+class CheerupPositionFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('validated', 'checkbox', [
+        $builder->add('startDate', null, [
             'label'    => false,
-            'required' => false
+        ])->add('endDate', null, [
+            'label'    => false,
+        ])->add('description', null, [
+            'label'    => false,
+        ])->add('title', null, [
+            'label'    => false,
         ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UserBundle\Entity\User',
+            'data_class' => 'AppBundle\Entity\CheerupPosition',
         ));
     }
 
     public function getName()
     {
-        return 'app_user_validation';
+        return 'app_cheerup_position';
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -105,6 +106,13 @@ class UserProfile
      * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", nullable=true)
      */
     private $picture;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CheerupPosition", mappedBy="userProfile", cascade={"persist", "remove"})
+     */
+    private $cheerupPositions;
 
     public function __construct()
     {
@@ -351,7 +359,7 @@ class UserProfile
      *
      * @param Picture $picture
      *
-*@return UserProfile
+     * @return UserProfile
      */
     public function setPicture(Picture $picture = null)
     {
@@ -368,5 +376,49 @@ class UserProfile
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCheerupPositions()
+    {
+        return $this->cheerupPositions;
+    }
+
+    /**
+     * @param Collection $cheerupPositions
+     */
+    public function setCheerupPositions($cheerupPositions)
+    {
+        $this->cheerupPositions = $cheerupPositions;
+    }
+
+    /**
+     * @param CheerupPosition $cheerupPosition
+     *
+     * @return $this
+     */
+    public function addCheerupPosition(CheerupPosition $cheerupPosition)
+    {
+        if (!$this->getCheerupPositions()->contains($cheerupPosition)) {
+            $this->getCheerupPositions()->add($cheerupPosition);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $cheerupPosition
+     *
+     * @return $this
+     */
+    public function removeCheerupPosition($cheerupPosition)
+    {
+        if ($this->getCheerupPositions()->contains($cheerupPosition)) {
+            $this->getCheerupPositions()->removeElement($cheerupPosition);
+        }
+
+        return $this;
     }
 }

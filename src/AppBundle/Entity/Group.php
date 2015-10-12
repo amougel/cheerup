@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -43,20 +44,33 @@ class Group
     private $description;
 
     /**
+     * @var Picture
+     *
      * @ORM\OneToOne(targetEntity="Picture",  cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", nullable=true)
      */
     private $picture;
 
     /**
+     * @var boolean
+     *
      * @ORM\Column(type="boolean", length=255)
      */
     private $offshoot = false;
 
     /**
+     * @var Collection
+     *
      * @ORM\OneToMany(targetEntity="UserBundle\Entity\User", mappedBy="offshootOfOrigin")
      */
     private $members;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CheerupPosition", mappedBy="group", cascade={"persist", "remove"})
+     */
+    private $cheerupPositions;
 
     /**
      * Get id
@@ -174,5 +188,49 @@ class Group
     public function setOffshoot($offshoot)
     {
         $this->offshoot = $offshoot;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCheerupPositions()
+    {
+        return $this->cheerupPositions;
+    }
+
+    /**
+     * @param Collection $cheerupPositions
+     */
+    public function setCheerupPositions($cheerupPositions)
+    {
+        $this->cheerupPositions = $cheerupPositions;
+    }
+
+    /**
+     * @param CheerupPosition $cheerupPosition
+     *
+     * @return $this
+     */
+    public function addCheerupPosition(CheerupPosition $cheerupPosition)
+    {
+        if (!$this->getCheerupPositions()->contains($cheerupPosition)) {
+            $this->getCheerupPositions()->add($cheerupPosition);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $cheerupPosition
+     *
+     * @return $this
+     */
+    public function removeCheerupPosition($cheerupPosition)
+    {
+        if ($this->getCheerupPositions()->contains($cheerupPosition)) {
+            $this->getCheerupPositions()->removeElement($cheerupPosition);
+        }
+
+        return $this;
     }
 }
