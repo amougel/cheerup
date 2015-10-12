@@ -11,22 +11,31 @@ class CheerupPositionFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('startDate', null, [
-            'label'    => false,
-        ])->add('endDate', null, [
-            'label'    => false,
-        ])->add('description', null, [
-            'label'    => false,
-        ])->add('title', null, [
-            'label'    => false,
-        ]);
+        $dateOptons = [
+            'label'  => false,
+            'html5'  => false,
+            'widget' => 'single_text',
+            'attr'   => ['class' => 'form-control actual_range']
+        ];
+
+        $builder->add('startDate', 'date', $dateOptons)
+            ->add('endDate', 'date', $dateOptons)
+            ->add(
+                'title',
+                null,
+                [
+                    'label' => false,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\CheerupPosition',
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => 'AppBundle\Entity\CheerupPosition',
+            ]
+        );
     }
 
     public function getName()

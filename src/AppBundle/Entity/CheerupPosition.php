@@ -29,13 +29,6 @@ class CheerupPosition
     private $title;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="datetime")
@@ -96,29 +89,6 @@ class CheerupPosition
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return CheerupPosition
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**

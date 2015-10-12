@@ -82,6 +82,15 @@ profile:
             keys:
                 profile_type: Type de profil :
                 is_validated: Profil validé :
+        cheerup_positions:
+            title: Postes Cheerup
+            success: Vos postes Cheerup ont été modifiés avec succès
+            delete: Supprimer
+            empty: Aucun poste renseigné pour le moment
+            fields:
+                title: Intitulé
+                start_date: Début
+                end_date: Fin
     view:
         title: Profil de %fullname%
 

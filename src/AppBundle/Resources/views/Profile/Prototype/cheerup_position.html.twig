@@ -1,0 +1,11 @@
+<tr class="item">
+    <td>{{ form_widget(form.title) }}</td>
+    <td>
+        <div class="input-group cheerup-position-datepicker">
+            {{ form_widget(form.startDate) }}
+            <span class="input-group-addon">{{ 'to'|trans }}</span>
+            {{ form_widget(form.endDate) }}
+        </div>
+    </td>
+    <td><button type="button" class="delete_item btn btn-danger btn-sm">{{ 'profile.edit.cheerup_positions.delete'|trans }}</button></td>
+</tr>

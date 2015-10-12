@@ -146,6 +146,60 @@
             </div>
         </div>
         <!-- /.col-lg-6 -->
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'Hello'|trans }}
+                </div>
+                <div class="panel-body">
+                    <div class="collection_container">
+                        {{ form_start(form_cheerup_positions) }}
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date range</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="collection_holder"
+                                   data-prototype="
+                               {% filter escape %}
+                                 {{ include('AppBundle:Profile:Prototype/cheerup_position.html.twig', { 'form': form_cheerup_positions.cheerupPositions.vars.prototype }) }}
+                             {% endfilter %}">
+                                {% if form_cheerup_positions.cheerupPositions is not empty %}
+
+                                {% for position in form_cheerup_positions.cheerupPositions %}
+                                    <tr>
+                                        <td>{{ form_row(position.title) }}</td>
+                                        <td>{{ form_row(position.description) }}</td>
+                                        <td>
+                                            <div class="input-group" id="cheerup-position-datepicker">
+                                                {{ form_row(position.startDate, {'attr': {'class': 'range_input'}}) }}
+                                                {{ form_row(position.endDate, {'attr': {'class': 'range_input'}}) }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% else %}
+                                    <tr class="cheerup-position-empty-table-message">
+                                        <td colspan="3">
+                                            <div class="alert alert-warning">
+                                                {{ 'profile.edit.cheerup_positions.empty'|trans }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                        <button class="add_item btn btn-success">Add</button>
+                        {{ form_end(form_cheerup_positions) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 {% endblock %}

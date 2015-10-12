@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Picture;
 use AppBundle\Entity\UserProfile;
+use AppBundle\Form\Type\CheerupPositionCollectionFormType;
+use AppBundle\Form\Type\CheerupPositionFormType;
 use AppBundle\Form\Type\PictureFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,11 +54,14 @@ class ProfileController extends Controller
 
         $formUserProfile = $this->createForm(new UserProfileFormType(), $userProfile);
         $formPicture     = $this->createForm(new PictureFormType(), $picture, ['validation_groups' => 'profile']);
+        $formCheerupPositions = $this->createForm(new CheerupPositionCollectionFormType(), $userProfile);
+
         $formChangePassword = $this->container->get('fos_user.change_password.form');
         $formChangePasswordHandler = $this->container->get('fos_user.change_password.form.handler');
 
         $formUserProfile->handleRequest($request);
         $formPicture->handleRequest($request);
+        $formCheerupPositions->handleRequest($request);
         $processChangePassword = $formChangePasswordHandler->process($user);
 
         if ($formUserProfile->isValid()) {
@@ -83,6 +88,17 @@ class ProfileController extends Controller
                 $this->get('translator')->trans('profile.edit.picture.success')
             );
         }
+        if ($formCheerupPositions->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($userProfile); // Cheerup positions are cascade persisted
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('profile.edit.cheerup_positions.success')
+            );
+        }
         if ($processChangePassword) {
             $this->addFlash(
                 'success',
@@ -94,6 +110,7 @@ class ProfileController extends Controller
             'current_picture_web_path' => $currentPictureWebPath,
             'form_user_profile'        => $formUserProfile->createView(),
             'form_picture'             => $formPicture->createView(),
+            'form_cheerup_positions'   => $formCheerupPositions->createView(),
             'form_change_password'     => $formChangePassword->createView(),
             'user'                     => $user,
         ];

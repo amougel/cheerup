@@ -15,7 +15,8 @@ gulp.task('js', function () {
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/metisMenu/dist/metisMenu.min.js',
         'bower_components/datatables/media/js/jquery.dataTables.min.js',
-        'bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js'
+        'bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js',
+        'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'
     ];
     var appFiles = [
         'app/Resources/public/js/**/*.js',
@@ -38,7 +39,8 @@ gulp.task('css', function () {
         'bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
         'bower_components/datatables-responsive/css/dataTables.responsive.css',
         'bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
-        'bower_components/font-awesome/css/font-awesome.min.css'
+        'bower_components/font-awesome/css/font-awesome.min.css',
+        'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'
     ];
     var appFiles = [
         'app/Resources/public/less/**/*.less',

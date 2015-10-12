@@ -1,3 +1,6 @@
+/*
+ Collection.js
+ */
 $(function () {
 
     var CollectionManager = function (collectionContainer, options) {
@@ -248,8 +251,4 @@ $(function () {
             return new CollectionManager(collectionContainer, options);
         })
     };
-
-    $(document).ready(function () {
-        $('.collection_container').manageCollection();
-    });
 });
