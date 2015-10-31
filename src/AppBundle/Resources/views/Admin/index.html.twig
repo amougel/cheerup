@@ -1,0 +1,101 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'admin.index.title'|trans }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+
+        <div class="col-lg-12">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success alert-dismissable">
+                    {{ flashMessage|raw }}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- /.col-lg-12 -->
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'admin.index.user_validation.title'|trans }}
+                </div>
+                <div class="panel-body">
+                    {% if form_user_validation_collection.users is not empty %}
+                        {{ form_start(form_user_validation_collection) }}
+                        <div class="dataTable_wrapper big-checkboxes">
+                            <table class="table table-bordered table-striped table-primary list-table"
+                                   id="user-validation-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'admin.index.user_validation.field.firstname'|trans }}</th>
+                                        <th>{{ 'admin.index.user_validation.field.lastname'|trans }}</th>
+                                        <th>{{ 'admin.index.user_validation.field.profile_type'|trans }}</th>
+                                        <th>{{ 'admin.index.user_validation.field.offshoot_of_origin'|trans }}</th>
+                                        <th class="no-sort">{{ 'admin.index.user_validation.field.select'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in form_user_validation_collection.users %}
+                                        <tr>
+                                            <td>{{ user.vars.value.firstname }}</td>
+                                            <td>{{ user.vars.value.lastname }}</td>
+                                            <td>{{ ('user.profile_type.'~user.vars.value.profileType|lower)|trans }}</td>
+                                            <td>{% if user.vars.value.offshootOfOrigin is not null %}
+                                                    {{ user.vars.value.offshootOfOrigin.name }}
+                                                {% endif %}
+                                            </td>
+                                            <td class="big-checkbox text-center">{{ form_widget(user.validated) }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <input class="btn btn-lg btn-default" type="submit" name="delete"
+                                           value="{{ 'admin.index.user_validation.delete'|trans }}"/>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <input class="btn btn-lg btn-success" type="submit" name="validate"
+                                           value="{{ 'admin.index.user_validation.validate'|trans }}"/>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form_user_validation_collection) }}
+                    {% else %}
+                        <div class="alert alert-warning">
+                            {{ 'admin.index.user_validation.empty'|trans }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ 'admin.index.group.create.title'|trans }}
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(form_group) }}
+                        {{ form_row(form_group.name) }}
+                        {{ form_row(form_group.description) }}
+                        {{ form_row(form_group.offshoot) }}
+                        <input class="btn btn-lg btn-default btn-success btn-block" type="submit"
+                               value="{{ 'admin.index.group.create.submit'|trans }}"/>
+                        {{ form_end(form_group) }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-6 -->
+
+        </div>
+        <!-- /.col-lg-12 -->
+
+    </div>
+    <!-- /.row -->
+{% endblock %}

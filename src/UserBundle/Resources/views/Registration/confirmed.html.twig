@@ -1,0 +1,23 @@
+{% extends "UserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% embed "UserBundle::single_box.html.twig" %}
+        {% block title %}
+            {{ 'register.confirmed.title'|trans }}
+        {% endblock %}
+
+        {% block body %}
+            <p>{{ 'registration.confirmed'|trans({'%fullname%': user.fullName}, 'FOSUserBundle') }}</p>
+            <p>
+                {% if app.session is not empty %}
+                    {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                    {% if targetUrl is not empty %}<a
+                        href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('cheerup_home') }}">{{ 'register.back_to_home'|trans }}</a>
+                {% endif %}
+            </p>
+        {% endblock %}
+    {% endembed %}
+{% endblock fos_user_content %}

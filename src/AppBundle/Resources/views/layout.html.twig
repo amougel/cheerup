@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        {% include 'AppBundle::navbar.html.twig' %}
+
+        {# TODO header #}
+        <div id="page-wrapper" style="min-height: 654px;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+

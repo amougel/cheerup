@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">{{ 'home.brand_name'|trans }}</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li>
+            <p>{{ 'home.hello'|trans({'%firstname%': app.user.firstname}) }}</p>
+        </li>
+        <!-- /.dropdown -->
+
+        <li>
+            <a href="{{ path('fos_user_security_logout') }}">
+                <i class="fa fa-sign-out fa-fw fa-lg"></i>
+            </a>
+            <!-- /.dropdown-messages -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav in" id="side-menu">
+                <li>
+                    <a href="{{ path('cheerup_profile_edit') }}" class="active"><i
+                                class="fa fa-user fa-fw"></i> {{ 'home.navbar.profile'|trans }}</a>
+                </li>
+                <li>
+                    <a href="#" class="active"><i class="fa fa-users fa-fw"></i> {{ 'home.navbar.group'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active"><i
+                                class="fa fa-search fa-fw"></i> {{ 'home.navbar.search'|trans }}</a>
+                </li>
+                {# TODO Check admin access to display this #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('cheerup_admin_index') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> {{ 'home.navbar.admin'|trans }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>

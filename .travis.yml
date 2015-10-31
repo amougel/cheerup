@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - 5.5
+script: phpunit -c app/
+
+before_script:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - composer install
+  - php app/console doctrine:database:create
+  - php app/console doctrine:migrations:migrate -n
+  - php app/console doctrine:fixtures:load -n
+  - npm install
+
+git:
+    submodules: false
+
+cache:
+    directories:
+      - node_modules
+      - bower_components
+      - vendor
+      - bin

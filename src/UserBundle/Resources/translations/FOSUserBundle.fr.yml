@@ -1,0 +1,30 @@
+security:
+    login:
+        username: "Email"
+        password: "Mot de passe"
+        remember_me: Se souvenir de moi
+        submit: Connexion
+"Bad credentials.": Nom d'utilisateur ou mot de passe incorrect.
+"User account is disabled.": Ce compte n'est pas activé.
+"User account is locked.": Ce compte est verrouillé.
+"User account has expired.": Ce compte a expiré.
+registration:
+    confirmed: Félicitations %fullname%, vous pouvez maintenant vous connecter.
+    email:
+        subject: Bienvenue %fullname% !
+        message: |
+            Bonjour %fullname% !
+
+            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.
+resetting:
+    email:
+        message: |
+            Bonjour %fullname% !
+
+            Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.

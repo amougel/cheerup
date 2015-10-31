@@ -1,0 +1,23 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{ group.name }}</h1>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ ('group.header.helper.' ~ group.groupType)|trans }}
+            </div>
+            <div class="panel-body">
+                <p>
+                    {{ group.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}

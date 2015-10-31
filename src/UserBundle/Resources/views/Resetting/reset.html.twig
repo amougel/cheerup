@@ -1,0 +1,17 @@
+
+{% extends "UserBundle::layout.html.twig" %}
+{% block fos_user_content %}
+    {% embed "UserBundle::single_box.html.twig" %}
+        {% block title %}
+            {{ 'resetting.reset.title'|trans }}
+        {% endblock %}
+
+        {% block body %}
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock fos_user_content %}

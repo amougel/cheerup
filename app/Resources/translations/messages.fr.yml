@@ -1,0 +1,125 @@
+yes: Oui
+no: Non
+
+base:
+    title:
+        default: Annuaire CheerUp
+home:
+    hello: Bonjour %firstname%
+    brand_name: Annuaire CheerUp!
+    navbar:
+        profile: Mon profil
+        group: Groupes
+        search: Rechercher
+        admin: Administration
+user:
+    profile_type:
+        cheerup_friend: Ami de Cheer Up!
+        network_volunteer: Volontaire du réseau Cheer Up!
+        former_member: Bénévole ou ancien
+
+group:
+    type:
+        group: Groupe
+        offshoot: Antenne
+
+profile:
+    edit:
+        title: Mon profil
+        user_profile:
+            title: Informations générales
+            coordinates: Coordonnées
+            social_networks: Réseaux sociaux
+            submit: Sauvegarder
+            fields:
+                first_year_contact:
+                    label: Première année de contact avec CheerUp!
+                    placeholder: Exemple : 2004
+                address:
+                    label: Adresse ligne 1
+                    placeholder: Exemple : 37 rue de Chamboulis
+                additional_address_details:
+                    label: Adresse ligne 2
+                    placeholder: Exemple : Bat A, porte 3
+                zip_code:
+                    label: Code postal
+                    placeholder: Exemple : 75017
+                city:
+                    label: Ville
+                    placeholder: Exemple : Paris
+                facebook_profile:
+                    label: Adresse du profil Facebook
+                    placeholder: Exemple : https://www.facebook.com/prenom.nom
+                twitter_profile:
+                    label: Adresse du profil Twitter
+                    placeholder: Exemple : https://twitter.com/PrenomNom
+                linked_in_profile:
+                    label: Adresse du profil LinkedIn
+                    placeholder: Exemple : https://fr.linkedin.com/in/prenomnom
+                personal_website:
+                    label: Site personnel
+                    placeholder: Exemple : https://www.monsiteperso.com
+                phone_number:
+                    label: Numéro de téléphone fixe
+                    placeholder: Exemple : 01 XX XX XX XX
+                cellphone_number:
+                    label: Numéro de téléphone portable
+                    placeholder: Exemple : 06 XX XX XX XX
+            success: Modifications enregistrées avec succès !
+        picture:
+            title: Photo de profil
+            choose_file: Choisir une photo
+            success: Photo mise à jour avec succès !
+        change_password:
+            title: Changement de mot de passe
+            success: Votre mot de passe a été mis à jour avec succès
+            submit: Enregistrer
+        offshoot_of_origin:
+            title: Antenne d'origine
+            link: Voir la page de l'antenne
+        status:
+            title: Statuts
+            keys:
+                profile_type: Type de profil :
+                is_validated: Profil validé :
+    view:
+        title: Profil de %fullname%
+
+group:
+    header:
+        helper:
+            OFFSHOOT: Antenne
+            GROUP: Groupe
+
+admin:
+    index:
+        title: Administration
+        group:
+            create:
+                title: Ajout d'un groupe
+                success: Groupe crée avec succès
+                submit: Ajouter
+                field:
+                    name: Nom
+                    description: Description
+                    offshoot: Type de groupe
+                    is_not_offshoot: Équipe fédérale
+                    is_offshoot: Antenne Cheerup
+        user_validation:
+            title: Validation des nouveaux utilisateurs
+            validate: Valider
+            delete: Supprimer
+            success:
+                sing:
+                    validate: <strong>%nb_of_users%</strong> utilisateur a été <strong>validé</strong> avec succès
+                    delete: <strong>%nb_of_users%</strong> utilisateur a été <strong>supprimé</strong> avec succès
+                plural:
+                    validate: <strong>%nb_of_users%</strong> utilisateurs ont été <strong>validés</strong> avec succès
+                    delete: <strong>%nb_of_users%</strong> utilisateurs ont été <strong>supprimés</strong> avec succès
+            empty: Il n'y a pas de nouveaux utilisateurs en attente de validation
+            field:
+                firstname: Prénom
+                lastname: Nom
+                profile_type: Type de profil
+                offshoot_of_origin: Antenne d'origine
+                select: Sélectionner

@@ -1,0 +1,3 @@
+registration:
+    profile_type:
+        not_valid: Choisissez un type d'utilisateur valide

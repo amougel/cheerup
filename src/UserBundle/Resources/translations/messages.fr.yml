@@ -1,0 +1,46 @@
+'Bad credentials': 'Identifiants incorrects'
+
+login:
+    register:
+        title: Pas encore inscrit ?
+        description: >
+            Bienvenue sur le site de Cheerup. Si tu n'es pas encore inscrit,
+            clique sur le lien suivant et rejoins les autres membres Cheerup.
+        link: Inscris toi !
+    forgot_password: Mot de passe oublié ?
+register:
+    title: Inscription
+    help:
+        cheerup_friend:
+            title: Ami de Cheer Up!
+            description: >
+                Les Amis de Cheer Up! font partie d'organisations dont
+                l'action est proche et complémentaire de celle de Cheer Up!
+                avec qui ils collaborent régulièrement.
+        network_volunteer:
+            title: Volontaire du réseau Cheer Up!
+            description: >
+                Les Volontaires du Réseau Cheer Up (VRC) sont des personnes
+                extérieures à l'association ayant proposé leur aide à Cheer Up!
+    field:
+        profile_type: Type de profil :
+        firstname: Prénom :
+        lastname: Nom :
+        offshootOfOrigin: Antenne d'origine :
+    confirmed:
+        title: Inscription confirmée
+    check_email:
+        title: Demande de confirmation
+    back_to_login: Revenir à l'accueil
+    back_to_home: Retour à l'accueil
+
+resetting:
+    check_email:
+        title: Vérification de l'adresse email
+    password_already_requested:
+        title: Mot de passe déjả renvoyé
+    request:
+        title: Demande de réinitialisation de mot de passe
+        email: Email
+    reset:
+        title: Réinitisalisation du mot de passe

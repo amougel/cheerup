@@ -1,0 +1,151 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'profile.edit.title'|trans }}
+                <small>{{ user.fullname }}</small>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+
+        <div class="col-lg-12">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success alert-dismissable">
+                    {{ flashMessage }}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- /.col-lg-12 -->
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'profile.edit.user_profile.title'|trans }}
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form_user_profile) }}
+                    <h3>{{ 'profile.edit.user_profile.coordinates'|trans }}</h3>
+
+                    <div class="text-left">
+                        {{ form_row(form_user_profile.firstYearContact) }}
+                        {{ form_row(form_user_profile.address) }}
+                        {{ form_row(form_user_profile.additionalAddressDetails) }}
+                        {{ form_row(form_user_profile.zipCode) }}
+                        {{ form_row(form_user_profile.city) }}
+                        {{ form_row(form_user_profile.phoneNumber) }}
+                        {{ form_row(form_user_profile.cellphoneNumber) }}
+                    </div>
+                    <h3>{{ 'profile.edit.user_profile.social_networks'|trans }}</h3>
+
+                    <div class="text-left">
+                        {{ form_row(form_user_profile.facebookProfile) }}
+                        {{ form_row(form_user_profile.twitterProfile) }}
+                        {{ form_row(form_user_profile.linkedInProfile) }}
+                        {{ form_row(form_user_profile.personalWebsite) }}
+                        <div class="text-center">
+                            <input class="btn btn-lg btn-default btn-success btn-block" type="submit"
+                                   value="{{ 'profile.edit.user_profile.submit'|trans }}"/>
+                        </div>
+                    </div>
+                    {{ form_end(form_user_profile) }}
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+
+        <div class="col-lg-6">
+            {% if user.offshootOfOrigin is not null %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ 'profile.edit.offshoot_of_origin.title'|trans }}
+                    </div>
+                    <div class="panel-body text-center">
+                        <a href="{{ path('cheerup_group_show', {'id': offshoot_of_origin.id}) }}">
+                            {{ 'profile.edit.offshoot_of_origin.link'|trans }}
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'profile.edit.picture.title'|trans }}
+                </div>
+                <div class="panel-body text-center">
+                    {% if current_picture_web_path is not null %}
+                        {% set picture_url = current_picture_web_path %}
+                    {% else %}
+                        {% set picture_url = asset('images/default_profile_picture.jpg') %}
+                    {% endif %}
+                    <img src="{{ picture_url|imagine_filter('profile_thumbnail') }}"
+                         alt="Profile picture thumbnail"
+                         class="img-circle"
+                         style="padding: 15px"
+                            />
+                    {{ form_start(form_picture) }}
+                    <div class="form-group text-center">
+                        <div class="has-error">
+                            {{ form_errors(form_picture.file) }}
+                        </div>
+                        <div class="btn-group" role="group">
+                            <span class="btn btn-lg btn-default btn-default btn-file">
+                                {{ 'profile.edit.picture.choose_file'|trans }}
+                                {{ form_widget(form_picture.file) }}
+                            </span>
+                            <button type="submit" class="btn btn-lg btn-default btn-success">
+                                <i class="fa fa-cloud-upload fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    {{ form_end(form_picture) }}
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'profile.edit.status.title'|trans }}
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>{{ 'profile.edit.status.keys.profile_type'|trans }}</td>
+                                    <td>{{ ('user.profile_type.'~user.profileType|lower)|trans }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'profile.edit.status.keys.is_validated'|trans }}</td>
+                                    <td>{{ user.validated ? 'yes'|trans:'no'|trans }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+
+        <div class="col-lg-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    {{ 'profile.edit.change_password.title'|trans }}
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form_change_password) }}
+                    {{ form_row(form_change_password.current_password) }}
+                    {{ form_row(form_change_password.new) }}
+                    <input class="btn btn-lg btn-default btn-default btn-block" type="submit"
+                           value="{{ 'profile.edit.change_password.submit'|trans }}"/>
+                    {{ form_end(form_change_password) }}
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+{% endblock %}
